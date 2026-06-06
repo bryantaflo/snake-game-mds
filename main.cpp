@@ -65,11 +65,17 @@ void Draw() {
     cout << "PUNTUACION: " << score << "   " << endl;
 }
 
-// (Esto es lo de Kevin)
 void Input() {
-
+    if (_kbhit()) {
+        switch (_getch()) {
+            case 'a': case 'A': if (dir != RIGHT) dir = LEFT; break;
+            case 'd': case 'D': if (dir != LEFT) dir = RIGHT; break;
+            case 'w': case 'W': if (dir != DOWN) dir = UP; break;
+            case 's': case 'S': if (dir != UP) dir = DOWN; break;
+            case 'x': case 'X': gameOver = true; break; // Botón de pánico para salir
+        }
+    }
 }
-
 
 void Logic() {
     if (dir == STOP) return;
